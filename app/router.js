@@ -5,6 +5,16 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  router.get('/', controller.home.index);
-    router.get('/news', controller.home.list);
+
+    //所有get获取 模板资源 等   不采用 restful 规范
+    router.get('/', controller.home.index);
+    router.get('/login', controller.home.login);
+    router.get('/user', controller.home.user);
+    //所有post获取接口数据
+
+    router.post('/user', controller.users.index);
+    router.post('/user/update/:id', controller.users.upateUser);
+    router.post('/user/insert', controller.users.insertUser);
 };
+
+
