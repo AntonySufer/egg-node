@@ -18,3 +18,8 @@ exports.sequelize = {
 exports.security = {
     enable: false
 };
+
+exports.validate = { //验证插件
+    enable: true,
+    package: 'egg-validate'
+};

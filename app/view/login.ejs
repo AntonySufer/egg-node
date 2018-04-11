@@ -1,15 +1,69 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="public/image/favicon.ico" type="image/x-icon">
-    <link href="public/css/public.css" rel="stylesheet" type="text/css" />
-    <title>用户管理</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>登录</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/??sm.min.css,sm-extend.min.css">
+
 </head>
 <body>
+
+<div class="page-group">
+    <div class="page page-current">
+        <!-- 你的html代码 -->
+        <header class="bar bar-nav">
+            <h1 class="title">用户登录</h1>
+        </header>
+
+        <div class="content"  >
+            <form action="/user/loginSumit" method="post" type="multipart/form-data" >
+            <div class="list-block">
+                <ul>
+                    <!-- Text inputs -->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">姓名</div>
+                                <div class="item-input">
+                                    <input type="text" name="account" placeholder="Your name">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-email"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">密码</div>
+                                <div class="item-input">
+                                    <input type="password"  name="pwd" placeholder="password">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="content-block">
+                <div class="row">
+                    <div class="col-50"><a href="#" class="button button-big button-fill button-danger">取消</a></div>
+                    <div class="col-50"><input type="submit" value="提交" class= "button button-big button-fill button-success"></div>
+                </div>
+            </div>
+            </form>
+          <p  style="color:red"> <%=userError%></p>
+           <span class="title">account：123456   pwd：123456</span>
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>

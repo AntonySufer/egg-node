@@ -45,6 +45,10 @@ module.exports = app => {
             type: STRING(23),
             allowNull: false,
         },
+        nick_name: {
+            type: STRING(23),
+            allowNull: false,
+        },
         pwd: {
             type: STRING(100),
             allowNull: false,

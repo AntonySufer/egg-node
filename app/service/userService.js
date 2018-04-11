@@ -7,9 +7,10 @@ const PgSql = require('../func/PgSql'); //pg 工具
 class NewsService extends Service {
     constructor(ctx){
         super(ctx); // 调用父类的constructor()
-        const { query,params } = ctx; //获取入参和模型实例
+        const { query,params,request } = ctx; //获取入参和模型实例
         this.query =query;  //  a=xxxx参数模式 获取
         this.params = params ; // /user/:id 模式
+        this.request = request.body ; // /form表单来的参数
         this.pgdb= new PgSql(ctx);
 
 
@@ -37,6 +38,25 @@ class NewsService extends Service {
             data.sucMsg='修改失败';
             return data ;
         }
+        data.state =200;
+        data.sucMsg='成功';
+        return data ;
+
+    }
+
+    async loginCheck() {
+        let data={};
+
+        var  sql = `SELECT ID,account,nick_name FROM m_user where account='${this.request.account}' and pwd='${this.request.pwd}'  `;
+        var  result = await  this.pgdb.query(sql);
+        if (result.state !==200 ||  result.rowsList.length ==0){
+            data.state =400;
+            data.errMsg='新用户请注册';
+            return data ;
+        }
+        data.id =result.rowsList[0].id;
+        data.account =result.rowsList[0].account;
+        data.nick_name =result.rowsList[0].nick_name;
         data.state =200;
         data.sucMsg='成功';
         return data ;

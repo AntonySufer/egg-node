@@ -12,9 +12,13 @@ module.exports = app => {
     router.get('/user', controller.home.user);
     //所有post获取接口数据
 
-    router.post('/user', controller.users.index);
-    router.post('/user/update/:id', controller.users.upateUser);
-    router.post('/user/insert', controller.users.insertUser);
+    // router.post('/user', controller.users.index);
+    // router.post('/user/update/:id', controller.users.upateUser);
+    // router.post('/user/insert', controller.users.insertUser);
+    router.post('/user/loginSumit', controller.users.loginSumit);
+
+
+
 };
 
 
