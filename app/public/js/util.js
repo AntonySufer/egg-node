@@ -5,7 +5,7 @@
         if(domWidth / v > 1024){
             domWidth = 1024 * v;
         }
-        win.rem = domWidth / 29.29;
+        win.rem = domWidth / 18;
         domEle.style.fontSize = win.rem + "px";
      }
      var v, initial_scale, timeCode, dom = win.document, domEle = dom.documentElement, viewport = dom.querySelector('meta[name="viewport"]'), flexible = dom.querySelector('meta[name="flexible"]');

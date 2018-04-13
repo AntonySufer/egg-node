@@ -1,20 +1,87 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>登录</title>
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="stylesheet" href="public/css/style.css">
-</head>
+<%- include("./temp/top.ejs") %>
 <body>
-<%=userName%>
+
+
+
+<div class="cz-content">
+
+  <div class="con-header">
+      <div ><p ><span class="active">话费充值</span></p></div>
+      <div><p>中石化</p></div>
+  </div>
+
+
+
+  <div class="re-list">
+      <% data.forEach(function(item){ %>
+      <div class="re-li" data-id="<%= item.goods_num%>">
+          <p><%= item.goods_denom%>元</p>
+          <p>售价 <%= Number(item.goods_price).toFixed(2)%></p>
+      </div>
+      <% }) %>
+
+
+      <!--<div class="re-li bg-re-li">-->
+       <!--<p>10元</p>-->
+       <!--<p>售价 10.00</p>-->
+    <!--</div>-->
+    <!--<div class="re-li">-->
+      <!--<p>10元</p>-->
+      <!--<p>售价 10.00</p>-->
+    <!--</div>-->
+    <!--<div class="re-li">-->
+      <!--<p>10元</p>-->
+      <!--<p>售价 10.00</p>-->
+    <!--</div>-->
+    <!--<div class="re-li">-->
+      <!--<p>10元</p>-->
+      <!--<p>售价 10.00</p>-->
+    <!--</div>-->
+    <!--<div class="re-li">-->
+      <!--<p>10元</p>-->
+      <!--<p>售价 10.00</p>-->
+    <!--</div>-->
+    <!--<div class="re-li">-->
+      <!--<p>10元</p>-->
+      <!--<p>售价 10.00</p>-->
+    <!--</div>-->
+
+
+ </div>
 
 
 </div>
+
+<div class="num-con clear">
+    <p>
+        <input type="text" class="input-text" value="" placeholder="请输入电话号码">
+    </p>
+    <p><span></span></p>
+
+</div>
+
+<div class="check-con" style="display: none">
+   <span>
+     <input class="check-btn" type="checkbox" id="check1"/><label for="check1" >✔</label>
+   </span>
+  <span>
+     我已同意
+   </span>
+  <span>
+    <a >《充值须知》</a> <a >《温馨提示》</a>
+   </span>
+
+
+</div>
+
+<div class="cz-footer " id="cz_btn">
+   <div >
+     <p>立即充值</p>
+   </div>
+
+</div>
+
+<script type="text/javascript" src="public/js/recharge/index.js"></script>
 
 </body>
 </html>

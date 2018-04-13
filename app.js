@@ -11,6 +11,7 @@ module.exports = app => {
     });
 
     app.on('request', ctx => {
+
         //请求都会经过
     });
 };
