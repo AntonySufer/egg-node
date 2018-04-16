@@ -15,25 +15,53 @@ class OrderController extends Controller {
         //默认user录入进来 /user
         const {ctx,service} = this;
         const createRule = {
-            code: { type: 'string' },
+            good_code: { type: 'string' },
+            tel_phone: { type: 'string' },
         };
 
-
-        let error = Check.validate(createRule,ctx.query);
+        let error = Check.validate(createRule,ctx.request.body);
         if(error){
             ctx.body = error;
         }else{
-
-            let  result = await service.orderService.orderPayMent();//开始 登陆判断
-            if (result.state !=200){
-                ctx.body = result;
+            const results = await service.orderService.orderPayMent();
+            if (results.state != 200){
+                ctx.body = results;
+                return ;
             }
-
              ctx.status  = 200;
-             ctx.body = result;
+             ctx.body = results;
         }
 
     }
+
+    /**
+     * 订单支付
+     * @returns {Promise.<void>}
+     */
+    async orderPay() {
+        //默认user录入进来 /user
+        const {ctx,service} = this;
+        const createRule = {
+            pay_type: { type: 'string' },
+            order_id: { type: 'string' }
+        };
+
+        let error = Check.validate(createRule,ctx.request.body);
+        if(error){
+            ctx.body = error;
+        }else{
+            const results = await service.orderService.updateOrder();
+            if (results.state !== 200){
+                ctx.body = results;
+                return ;
+            }
+
+            ctx.status  = 200;
+            ctx.body = results;
+        }
+
+    }
+
 
 
 }

@@ -15,23 +15,24 @@ class PgSql {
      * 查询数据方法
      * @returns {Promise.<void>}
      */
-    async query(sql,sqlDate) {
+    async query(sql,sqlData) {
         let  _this = this ;
         let resultVo ={}; //放回结果
         try {
-            let result = await  _this.db.query(sql,sqlDate);
+            let result = await  _this.db.query(sql,sqlData);
             if (result && result.length != 0 ){
                     resultVo.state =200;
                     resultVo.sucMsg ='成功';
                  let command =result[1].command;
-                 if (command ==='SELECT'){
+                 if (command ==='SELECT' ||command ==='UPDATE' || command ==='INSERT'){
                      resultVo.rowCount =result[1].rowCount;
                      resultVo.rowsList =result[1].rows;
-                 }else if (command ==='UPDATE'){
-                     resultVo.rowCount = result[1].rowCount;
-                 }else if(command ==='INSERT'){
-                     resultVo.rowCount = result[1].rowCount;
+                 }else if (result[1] ===1 && sql.indexOf('returning') > -1){ // 'returing id  '
+                     resultVo.rowCount =result[1];
+                     resultVo.rowsList =result[0];
                  }
+
+
                  //commit  begin close 等
 
             }else{

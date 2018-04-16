@@ -53,6 +53,10 @@ module.exports = app => {
             type: STRING(100),
             allowNull: true,
         },
+        bill_phone: {
+            type: STRING(50),
+            allowNull: true
+        },
         goods_price: {
             type:NUMERIC(23,4),
             allowNull: false,
@@ -70,6 +74,16 @@ module.exports = app => {
             allowNull: false,
             unique:true,
             comment:'支付订单号'
+        },
+        pay_type: {
+            type: STRING(50),
+            allowNull: true,
+            comment:'支付类型'
+        },
+        pay_state: {
+            type: STRING(50),
+            allowNull: true,
+            comment:'支付状态'
         },
         pay_time: {
             type: STRING(50),

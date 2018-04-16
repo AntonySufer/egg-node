@@ -123,18 +123,41 @@ body {
   position: fixed;
   bottom: 1.25rem;
   width: 100%;
+  background: #f5f5f5 !important;
   padding: 0 0.5rem; }
   .cz-footer div {
     text-align: center;
     border-radius: 0.125rem;
     height: 2.25rem;
-    width: 94%;
+    width: 92%;
     background: #FF5655;
     color: #FFFFFF;
     font-size: 0.85rem; }
     .cz-footer div p {
       line-height: 2.25rem;
       letter-spacing: 0.2rem; }
+    .cz-footer div .ripple {
+      position: relative;
+      overflow: hidden; }
+    .cz-footer div .ripple:after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, #F5F5F5 10%, transparent 10.01%);
+      background-repeat: no-repeat;
+      background-position: 50%;
+      transform: scale(10, 10);
+      opacity: 0;
+      transition: transform .3s, opacity .5s; }
+    .cz-footer div .ripple:active:after {
+      transform: scale(0, 0);
+      opacity: .3;
+      transition: 0s; }
 
 /*充值详细css  start*/
 .oil_detail > div {
@@ -201,7 +224,48 @@ body {
         background-size: contain;
         top: 0;
         right: -1.25rem;
-        background-image: url("public/image/gengduo.png"); }
+        background-image: url("/public/image/gengduo.png"); }
+.oil_detail .mypay-con > div {
+  width: 100%;
+  padding: 0px 0;
+  font-size: 0.7rem;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5; }
+.oil_detail .mypay-con .mypay-tit {
+  height: 2rem;
+  color: #999999;
+  line-height: 2rem;
+  border-bottom: 1px solid #F5F5F5; }
+.oil_detail .mypay-con .payli > p {
+  line-height: 2rem;
+  font-size: 0.9rem;
+  height: 2rem; }
+  .oil_detail .mypay-con .payli > p:active {
+    color: #FF5655; }
+  .oil_detail .mypay-con .payli > p:hover {
+    color: #FF5655; }
+.oil_detail .mypay-con .payli img {
+  line-height: 2rem;
+  display: inline-block;
+  height: 1rem;
+  vertical-align: middle;
+  width: 1rem; }
+.oil_detail .mypay-con .payli span {
+  margin-left: 0.25rem;
+  width: 84%;
+  line-height: 1rem;
+  display: inline-block;
+  vertical-align: middle; }
+.oil_detail .mypay-con .payli .no_select {
+  background: url("/public/image/no_select.png") no-repeat center; }
+.oil_detail .mypay-con .payli .yes_select {
+  background: url("/public/image/yes_select.png") no-repeat center; }
+.oil_detail .mypay-con .payli .sel-pay {
+  position: relative;
+  background-size: contain;
+  display: inline-block;
+  width: 1.05rem;
+  height: 1.05rem; }
 
 /*充值详细css  end*/
 

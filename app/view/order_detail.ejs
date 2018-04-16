@@ -4,7 +4,8 @@
 <div class="oil_detail">
     <div class="det-header ">
         <p>订单详情</p>
-        <p><%=data.goods_name%> - <%=data.tel_phone%></p>
+        <p><%=data.goods_name%> - <%=data.bill_phone%></p>
+
     </div>
 
     <div class="det-content">
@@ -15,21 +16,44 @@
         </p>
     </div>
 
-    <div class="det-mind">
+    <!--<div class="det-mind">
         <p>代金券</p>
         <p>
             <span>无代金券可用</span>  </span>
         </p>
+    </div>-->
+
+    <!--支付类别-->
+    <div class="mypay-con" >
+        <p class="mypay-tit">支付方式</p>
+        <div class="payli" data-pay_type="gold">
+           <p><img src="/public/image/hl_pay.png"/><span>个人账户(<%=Number(data.golds).toFixed(2)%>)</span><span class="sel-pay yes_select"></span></p>
+        </div>
+        <div class="payli" data-pay_type="alipay">
+            <p><img src="/public/image/zfb_pay.png"/><span>支付宝</span><span class="sel-pay no_select"></span></p>
+        </div>
+        <div class="payli" data-pay_type="weipay">
+            <p><img src="/public/image/wx_pay.png"/><span>微信支付</span><span class="sel-pay no_select"></span></p>
+        </div>
+
     </div>
-    <div class="cz-footer" data-code="<%=data.goods_num%>">
+
+
+    <div class="cz-footer" data-pay_type="gold" data-money="<%=data.goods_price%>"  data-golds="<%=data.golds%>"  data-order_id="<%= data.id %>">
         <div >
-            <p>立即充值</p>
+            <p class="ripple">立即充值</p>
         </div>
     </div>
 
+
+
+
+
+
+
 </div>
 
-<script type="text/javascript" src="public/js/recharge/index.js"></script>
+<script type="text/javascript" src="/public/js/recharge/order_detail.js"></script>
 
 
 

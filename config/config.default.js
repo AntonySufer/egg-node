@@ -1,6 +1,5 @@
 'use strict';
 const sequelizeConfig = require('./config.sequelize');
-let moment = require('moment');
 module.exports = appInfo => {
   const config = exports = {};
 
@@ -9,7 +8,6 @@ module.exports = appInfo => {
   // add your config here
   config.middleware = [];
   config.sequelize = sequelizeConfig; //数据连接
-  config.moment =moment ; //时间插件
   config.view = {  //采用官方模板
         defaultViewEngine: 'ejs',
         mapping: {

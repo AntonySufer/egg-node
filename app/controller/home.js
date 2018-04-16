@@ -2,6 +2,7 @@
 
 const Controller = require('egg').Controller;
 const Parameter = require('parameter');
+
 const Check = new Parameter(); //自定义的验证插件 https://www.cnblogs.com/adobe-lin/p/7298766.html
 class HomeController extends Controller {
     async index() {
@@ -17,12 +18,9 @@ class HomeController extends Controller {
                 "where": {"goods_type": "话费"},
                 "order": "entry_time ASC"
             };
-
-            let result = await ctx.model.Goods.findAll({sel});
-            await this.ctx.render('./index.ejs', {"data": result});
+            const results = await ctx.model.Goods.findAll({sel});
+            await this.ctx.render('./index.ejs', {"data": results});
         }
-
-
 
     }
 
@@ -34,48 +32,29 @@ class HomeController extends Controller {
         await this.ctx.render('./user.ejs', {data:'yidain'});
     }
 
-    //订单详情
-    async orderSeach() {
-
-
-
-        //默认user录入进来 /user
-        const {ctx,service} = this;
-        console.log(ctx.moment);
+    /**
+     * 订单详情页
+     * @returns {Promise.<void>}
+     */
+    async orderDetail() {
+         const {ctx,service} = this;
         const createRule = {
-            good_code: { type: 'string' },
-            tel_phone: { type: 'string' },
+            order_id: { type: 'string' }
         };
-
-
         let error = Check.validate(createRule, ctx.query);
-        if(error){
+        if(error) {
             ctx.body = error;
-        }else{
-            let result ={};
-            result = await service.orderService.GoodsByCode();//开始 登陆判断
-            if (result.state !=200){
-                ctx.body = result;
-            }else{
-                result.goodInfo.tel_phone =ctx.query.tel_phone ;
-
-                await ctx.render('./order_detail.ejs', {data:result.goodInfo});
-            }
-            // ctx.body = result;
+            ctx.status = 422;
+            return ;
         }
 
-    }
-
-    async orderPay() {
-        const {ctx,service} = this;
-        const createRule = {
-            good_code: { type: 'string' },
-            tel_phone: { type: 'string' },
-        };
-
-
-
-        await ctx.render('./orderPay.ejs', {data:'yidain'});
+        const results = await service.orderService.orderDeatil();
+        if(results.state !==200) {
+            ctx.body = error;
+            ctx.status = 422;
+            return ;
+        }
+        await ctx.render('./order_detail.ejs', {"data":results.orderInfo});
     }
 
 }
